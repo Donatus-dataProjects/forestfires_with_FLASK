@@ -6,15 +6,92 @@
         <title></title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
+        <style>
+            /* Basic reset */
+            body, h1, h2 {
+                margin: 0;
+                padding: 0;
+                font-family: Arial, sans-serif;
+            }
+
+            /* Centering the login form */
+            .login {
+                max-width: 400px;
+                margin: 50px auto;
+                padding: 20px;
+                border: 1px solid #ccc;
+                border-radius: 8px;
+                background-color: #f9f9f9;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            }
+
+            .login h1 {
+                text-align: center;
+                font-size: 24px;
+                margin-bottom: 20px;
+            }
+
+            /* Input fields styling */
+            .login input[type="text"] {
+                width: 100%;
+                padding: 10px;
+                margin: 10px -11px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                font-size: 16px;
+            }
+
+            /* Button styling */
+            .login button {
+                width: 100%;
+                padding: 10px;
+                background-color: #4CAF50;
+                color: white;
+                border: none;
+                border-radius: 4px;
+                font-size: 16px;
+                cursor: pointer;
+            }
+
+            .login button:hover {
+                background-color: #45a049;
+            }
+
+            /* Prediction result */
+            h2 {
+                text-align: center;
+                font-size: 18px;
+                color: #333;
+                margin-top: 20px;
+            }
+
+            /* Link styling */
+            a {
+                display: block;
+                text-align: center;
+                margin-bottom: -10px;
+                margin-top: 10px;
+                text-decoration: none;
+                color: #4CAF50;
+            }
+
+            a:hover {
+                text-decoration: underline;
+            }
+        </style>
+
     </head>
     <body>
+
+        <a href="{{ url_for('index') }}">Back to Home Page</a>
+
+
         <div class="login">
             <h1>FWI Prediction</h1>
         
              <!-- Main Input For Receiving Query to our ML -->
             <form action="{{ url_for('predict_datapoint')}}" method="post">
-              <input type="text" name="Temperature" placeholder="Temperature" required="required" /><br>
+                <input type="text" name="Temperature" placeholder="Temperature" required="required" /><br>
                 <input type="text" name="RH" placeholder="RH" required="required" /><br>
                 <input type="text" name="Ws" placeholder="Ws" required="required" /><br>
                 <input type="text" name="Rain" placeholder="Rain" required="required" /><br>
@@ -23,15 +100,22 @@
                 <input type="text" name="ISI" placeholder="ISI" required="required" /><br>
                 <input type="text" name="Classes" placeholder="Classes" required="required" /><br>
                 <input type="text" name="Region" placeholder="Region" required="required" /><br>
-        
-        
-        
+
                 <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-            </form>
-         <h2>
-            THE FWI prediction is {{result}}
-         </h2>
         
-        <script src="" async defer></script>
+        
+            </form>
+              <!-- Display error if exists -->
+              {% if error %}
+              <h3 style="color: red;">{{ error }}</h3>
+            {% endif %}
+            <h2>
+                THE FWI prediction is {{result}}
+             </h2>
+        </div>
+         
+
+        
+                
     </body>
 </html>
