@@ -2,13 +2,13 @@ import streamlit as st
 import pickle
 from sklearn.preprocessing import StandardScaler
 
-# Load the model and scaler
+# Loading the model and scaler
 ridge_model = pickle.load(open('models/ridge.pkl', 'rb'))
 standard_scaler = pickle.load(open('models/scaler.pkl', 'rb'))
 
 # Streamlit app title
-st.title("🔥 Fire Prediction App")
-st.markdown("Use this app to predict fire risk based on environmental data.")
+st.title("Algerian Forest Fire Prediction App")
+st.markdown("Converting it to a fl.")
 
 # Create input fields
 Temperature = st.number_input("Temperature", value=0.0)
